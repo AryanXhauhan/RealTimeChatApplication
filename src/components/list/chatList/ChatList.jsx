@@ -64,7 +64,7 @@ const ChatList = () => {
 
   return (
     <div className="chatList">
-      {/* Search Bar */}
+      
       <div className="search">
         <div className="searchBar">
           <img src="/search.png" alt="" />

@@ -150,11 +150,6 @@ const Chat = () => {
             </>
           )}
         </div>
-        <div className="icons">
-          <img src="./phone.png" alt="Call" />
-          <img src="./video.png" alt="Video" />
-          <img src="./info.png" alt="Info" />
-        </div>
       </div>
 
       {/* Chat Messages */}
@@ -188,8 +183,6 @@ const Chat = () => {
               disabled={isCurrentUserBlocked || isReceiverBlocked}
             />
           </label>
-          <img src="/camera.png" alt="Camera" />
-          <img src="/mic.png" alt="Mic" />
         </div>
         <input
           type="text"

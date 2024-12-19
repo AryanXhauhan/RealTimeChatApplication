@@ -1,5 +1,5 @@
-import Detail from "../detail/detail";
-import ChatList from "./chatList/Chatlist";
+import Detail from "../detail/Detail";
+import ChatList from "./chatList/ChatList";
 import "./list.css";
 import Userinfo from "./userInfo/Userinfo"
 

@@ -11,7 +11,7 @@ const Login = () => {
         file: null,
         url: ""
     });
-    const [loading, setLoading] = useState(false); // Declare loading state
+    const [loading, setLoading] = useState(false);
 
     const handleAvatar = e => {
         if (e.target.files[0]) {
@@ -71,7 +71,7 @@ const Login = () => {
 
     const handleLogin = async (e) => {
         e.preventDefault();
-        setLoading(true); // Set loading to true
+        setLoading(true);
 
         const formData = new FormData(e.target);
         const { email, password } = Object.fromEntries(formData);
@@ -83,7 +83,7 @@ const Login = () => {
             console.log(err);
             toast.error(`Error: ${err.message}`);
         } finally {
-            setLoading(false); // Set loading to false after login attempt
+            setLoading(false);
         }
     };
 

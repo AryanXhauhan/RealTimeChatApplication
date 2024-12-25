@@ -6,22 +6,22 @@ import { useUserStore } from "./userStore";
 export const useChatStore = create((set, get) => ({
   chatId: null,
   user: null,
-  isCurrentUserBlocked: false, // Whether the current user is blocked by the other
-  isReceiverBlocked: false, // Whether the other user is blocked by the current user
+  isCurrentUserBlocked: false, 
+  isReceiverBlocked: false,
 
-  // Change chat and set block states
+
   changeChat: async (chatId, user) => {
     const currentUser = useUserStore.getState().currentUser;
 
-    // Fetch block lists
+    
     const userBlockedList = user.blocked || [];
     const currentUserBlockedList = currentUser.blocked || [];
 
     set({
       chatId,
       user,
-      isCurrentUserBlocked: userBlockedList.includes(currentUser.id), // Check if the current user is blocked by the other user
-      isReceiverBlocked: currentUserBlockedList.includes(user.id), // Check if the other user is blocked by the current user
+      isCurrentUserBlocked: userBlockedList.includes(currentUser.id), 
+      isReceiverBlocked: currentUserBlockedList.includes(user.id), 
     });
   },
 
@@ -36,25 +36,23 @@ export const useChatStore = create((set, get) => ({
 
     try {
       if (blockStatus) {
-        // Block the user
+       
         await updateDoc(currentUserRef, {
           blocked: arrayUnion(chatUser.id),
         });
       } else {
-        // Unblock the user
+      
         await updateDoc(currentUserRef, {
           blocked: arrayRemove(chatUser.id),
         });
       }
 
-      // Update Zustand state
       set({ isReceiverBlocked: blockStatus });
     } catch (error) {
       console.error("Failed to block/unblock user:", error);
     }
   },
 
-  // Prevent sending messages or images if blocked
   sendMessage: async (message) => {
     const { isCurrentUserBlocked, isReceiverBlocked } = get();
 

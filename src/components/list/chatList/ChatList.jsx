@@ -115,7 +115,6 @@ const ChatList = () => {
         <p>No chats available</p>
       )}
 
-      {/* Add User Component */}
       {addMode && <AddUser />}
     </div>
   );

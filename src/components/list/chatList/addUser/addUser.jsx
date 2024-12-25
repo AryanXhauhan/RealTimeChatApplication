@@ -22,7 +22,7 @@ const AddUser = () => {
 
     const handleSearch = async (e) => {
         e.preventDefault();
-        setError(""); // Clear any previous errors
+        setError("");
         const formData = new FormData(e.target);
         const username = formData.get("username");
 
@@ -51,7 +51,7 @@ const AddUser = () => {
         const selectedUserChatsRef = doc(db, "userchats", user.id);
 
         try {
-            // Fetch the current user's chat list
+           
             const userChatsSnap = await getDoc(userChatsRef);
             const selectedUserChatsSnap = await getDoc(selectedUserChatsRef);
 
@@ -59,7 +59,7 @@ const AddUser = () => {
                 const existingChats = userChatsSnap.data()?.chats || [];
                 const selectedUserChats = selectedUserChatsSnap.data()?.chats || [];
 
-                // Check if the user already exists in either chat list
+               
                 const userAlreadyExistsInCurrentUserList = existingChats.some(
                     (chat) => chat.receiverId === user.id
                 );
@@ -74,7 +74,7 @@ const AddUser = () => {
                 }
             }
 
-            // Create a new chat if the user does not already exist
+            
             const chatRef = collection(db, "chats");
             const newChatRef = doc(chatRef);
             await setDoc(newChatRef, {
@@ -96,21 +96,18 @@ const AddUser = () => {
                 updatedAt: Date.now(),
             };
 
-            // Update Firestore for the selected user
             await updateDoc(doc(db, "userchats", user.id), {
                 chats: arrayUnion(chatDataForUser),
             });
 
-            // Update Firestore for the current user
             await updateDoc(userChatsRef, {
                 chats: arrayUnion(chatDataForCurrentUser),
             });
 
             console.log("Chat added successfully!");
 
-            // Reset the search input and selected user
             setUser(null);
-            setError(""); // Clear the error if adding is successful
+            setError("");
         } catch (err) {
             console.log("Error adding user to chat:", err);
         }

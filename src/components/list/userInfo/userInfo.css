@@ -16,10 +16,10 @@
         height: 50px;
         border-radius: 50%;
         object-fit: cover;
-        box-shadow: 0 0 15px rgba(81, 131, 254, 0.4), 0 0 25px rgba(81, 131, 254, 0.2); /* Neon glow effect */
-        transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover transition */
+        box-shadow: 0 0 15px rgba(81, 131, 254, 0.4), 0 0 25px rgba(81, 131, 254, 0.2); 
+        transition: transform 0.3s ease, box-shadow 0.3s ease; 
         position: relative;
-        z-index: 1; /* Ensure the glow effect is not overlapped by other elements */
+        z-index: 1; 
       }
       
       img::after {
@@ -30,15 +30,15 @@
         width: 60px;
         height: 60px;
         border-radius: 50%;
-        background: rgba(81, 131, 254, 0.1); /* Subtle neon ring */
+        background: rgba(81, 131, 254, 0.1); 
         transform: translate(-50%, -50%);
-        z-index: -1; /* Place the ring behind the image */
-        animation: pulseGlow 2s infinite ease-in-out; /* Glowing pulse animation */
+        z-index: -1;
+        animation: pulseGlow 2s infinite ease-in-out; 
       }
       
       img:hover {
-        transform: scale(1.2) rotate(3deg); /* Slight rotation for a dynamic effect */
-        box-shadow: 0 0 20px rgba(81, 131, 254, 0.6), 0 0 40px rgba(81, 131, 254, 0.4); /* Brighter glow on hover */
+        transform: scale(1.2) rotate(3deg);
+        box-shadow: 0 0 20px rgba(81, 131, 254, 0.6), 0 0 40px rgba(81, 131, 254, 0.4);
       }
       
       @keyframes pulseGlow {

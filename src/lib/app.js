@@ -20,7 +20,7 @@ const App = () => {
 
   const handleFileChange = (event) => {
     setImage(event.target.files[0]);
-    setError(''); // Clear any previous errors when a new file is selected
+    setError(''); 
   };
 
   const handleUpload = async (event) => {
@@ -34,11 +34,11 @@ const App = () => {
     setLoading(true);
     const formData = new FormData();
     formData.append('file', image);
-    formData.append('upload_preset', 'your_upload_preset'); // Replace with your upload preset
+    formData.append('upload_preset', 'your_upload_preset'); 
 
     try {
       const response = await axios.post('https://api.cloudinary.com/v1_1/dju66szv8/image/upload', formData);
-      setUploadedImageUrl(response.data.secure_url); // Store the full URL
+      setUploadedImageUrl(response.data.secure_url); 
       setError('');
     } catch (error) {
       setError('Error uploading image. Please try again.');
@@ -55,11 +55,7 @@ const App = () => {
           {loading ? 'Uploading...' : 'Upload Image'}
         </button>
       </form>
-
-      {/* Display error message */}
       {error && <p style={{ color: 'red' }}>{error}</p>}
-
-      {/* Display Uploaded Image */}
       {uploadedImageUrl && (
         <div>
           <h3>Uploaded Image:</h3>
@@ -67,7 +63,6 @@ const App = () => {
         </div>
       )}
 
-      {/* Display Transformed Sample Image */}
       <div>
         <h3>Sample Transformed Image:</h3>
         <AdvancedImage cldImg={img} />

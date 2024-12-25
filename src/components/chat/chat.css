@@ -5,9 +5,9 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    background: linear-gradient(135deg, #111b40, #101835); /* Futuristic gradient */
+    background: linear-gradient(135deg, #111b40, #101835);
     border-radius: 15px;
-    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(81, 131, 254, 0.3); /* Dual glow and shadow */
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(81, 131, 254, 0.3);
     color: white;
     overflow: hidden;
     animation: fadeIn 0.8s ease-out;
@@ -30,7 +30,7 @@
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid #1a1f36;
-    background: rgba(23, 33, 55, 0.9); /* Sleek dark top bar */
+    background: rgba(23, 33, 55, 0.9);
     border-radius: 15px 15px 0 0;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.6);
     position: relative;
@@ -56,7 +56,7 @@
         height: 60px;
         border-radius: 50%;
         object-fit: cover;
-        box-shadow: 0 0 20px rgba(81, 131, 254, 0.6), 0 0 30px rgba(254, 81, 81, 0.4); /* Intense glow */
+        box-shadow: 0 0 20px rgba(81, 131, 254, 0.6), 0 0 30px rgba(254, 81, 81, 0.4);
         transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
@@ -74,7 +74,7 @@
             font-size: 20px;
             font-weight: bold;
             color: #ffffff;
-            text-shadow: 0 0 5px rgba(81, 131, 254, 0.6); /* Neon effect on text */
+            text-shadow: 0 0 5px rgba(81, 131, 254, 0.6);
         }
 
         p {
@@ -92,7 +92,7 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    background: linear-gradient(135deg, #0e1329, #121835); /* Futuristic dark gradient */
+    background: linear-gradient(135deg, #0e1329, #121835);
     border-radius: 10px;
     box-shadow: inset 0px 10px 20px rgba(0, 0, 0, 0.8);
     animation: fadeInUp 1s ease;
@@ -115,6 +115,18 @@
     gap: 20px;
     transition: transform 0.3s ease;
 
+.message img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
+}
+
+.message img:hover {
+    transform: scale(1.05);
+}
     &.own {
         align-self: flex-end;
 
@@ -132,7 +144,7 @@
         height: 30px;
         border-radius: 50%;
         object-fit: cover;
-        box-shadow: 0 0 10px rgba(255, 2, 2, 0.6); /* Glow around avatar */
+        box-shadow: 0 0 10px rgba(255, 2, 2, 0.6);
     }
 
     .texts {
@@ -197,17 +209,17 @@ input {
     padding: 18px;
     border-radius: 10px;
     font-size: 16px;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4); /* Soft shadow on input */
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
     transition: background-color 0.3s ease;
 
     &:disabled {
         cursor: not-allowed;
-        background-color: rgba(17, 25, 40, 0.4); /* Darker background when disabled */
+        background-color: rgba(17, 25, 40, 0.4);
     }
 
     &:focus {
-        background-color: rgba(17, 25, 40, 0.9); /* Darker background on focus */
-        box-shadow: 0 0 8px rgba(81, 131, 254, 1); /* Neon blue shadow on focus */
+        background-color: rgba(17, 25, 40, 0.9);
+        box-shadow: 0 0 8px rgba(81, 131, 254, 1);
     }
 }
 

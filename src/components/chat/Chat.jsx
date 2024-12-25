@@ -17,20 +17,18 @@ const Chat = () => {
   const [open, setOpen] = useState(false);
   const [text, setText] = useState("");
   const [sending, setSending] = useState(false);
-  const [chatUser, setChatUser] = useState(null); // To store the chat user's details
-  const [loadingUser, setLoadingUser] = useState(true); // Track loading state for user data
+  const [chatUser, setChatUser] = useState(null);
+  const [loadingUser, setLoadingUser] = useState(true);
 
   const { currentUser } = useUserStore();
   const { chatId, user, isCurrentUserBlocked, isReceiverBlocked } = useChatStore();
 
   const endRef = useRef(null);
 
-  // Scroll to the bottom whenever messages update
   useEffect(() => {
     endRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [chat?.messages]);
 
-  // Fetch chat data from Firestore
   useEffect(() => {
     if (!chatId) return;
 
@@ -41,12 +39,11 @@ const Chat = () => {
     return () => unSub();
   }, [chatId]);
 
-  // Fetch chat user's details
   useEffect(() => {
     if (!user?.id) return;
 
     const fetchUserDetails = async () => {
-      setLoadingUser(true); // Start loading
+      setLoadingUser(true);
       try {
         const userDoc = await getDoc(doc(db, "users", user.id));
         if (userDoc.exists()) {
@@ -57,7 +54,7 @@ const Chat = () => {
       } catch (error) {
         console.error("Failed to fetch user details:", error);
       } finally {
-        setLoadingUser(false); // Finish loading
+        setLoadingUser(false);
       }
     };
 
@@ -101,13 +98,11 @@ const Chat = () => {
         imageURL = await uploadImageToCloudinary(image);
       }
 
-      // Check if user is blocked before sending
       if (isCurrentUserBlocked || isReceiverBlocked) {
         alert("You cannot send messages to a blocked user.");
         return;
       }
 
-      // Update the chat document with the new message
       await updateDoc(doc(db, "chats", chatId), {
         messages: arrayUnion({
           senderId: currentUser.id,
@@ -117,7 +112,7 @@ const Chat = () => {
         }),
       });
 
-      setText(""); // Reset input
+      setText("");
     } catch (error) {
       console.error("Error sending message:", error);
     } finally {
@@ -130,16 +125,13 @@ const Chat = () => {
     if (file) handleSend(file);
   };
 
-  // Format time for display
   const formatTime = (timestamp) => {
     const date = new Date(timestamp.seconds * 1000);
     return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
   };
-  
 
   return (
     <div className="chat">
-      {/* Chat Header */}
       <div className="top">
         <div className="user">
           {loadingUser ? (
@@ -157,8 +149,6 @@ const Chat = () => {
           )}
         </div>
       </div>
-
-      {/* Chat Messages */}
       <div className="center">
         {chat?.messages?.map((message, index) => (
           <div
@@ -170,15 +160,12 @@ const Chat = () => {
             <div className="texts">
               {message.img && <img src={message.img} alt="Attachment" />}
               {message.text && <p>{message.text}</p>}
-              {/* Add Time Here */}
               <span className="time">{formatTime(message.createdAt)}</span>
             </div>
           </div>
         ))}
         <div ref={endRef}></div>
       </div>
-
-      {/* Chat Input */}
       <div className="bottom">
         <div className="icons">
           <label>

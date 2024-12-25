@@ -130,6 +130,13 @@ const Chat = () => {
     if (file) handleSend(file);
   };
 
+  // Format time for display
+  const formatTime = (timestamp) => {
+    const date = new Date(timestamp.seconds * 1000);
+    return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
+  };
+  
+
   return (
     <div className="chat">
       {/* Chat Header */}
@@ -145,7 +152,6 @@ const Chat = () => {
               />
               <div className="texts">
                 <span>{chatUser?.username || "Unknown User"}</span>
-                <p>Hey Aryan This Side.</p>
               </div>
             </>
           )}
@@ -164,6 +170,8 @@ const Chat = () => {
             <div className="texts">
               {message.img && <img src={message.img} alt="Attachment" />}
               {message.text && <p>{message.text}</p>}
+              {/* Add Time Here */}
+              <span className="time">{formatTime(message.createdAt)}</span>
             </div>
           </div>
         ))}
@@ -174,7 +182,7 @@ const Chat = () => {
       <div className="bottom">
         <div className="icons">
           <label>
-            <img src="/img.png" alt="Upload" />
+            <img src="./img.png" alt="Upload" />
             <input
               type="file"
               accept="image/*"

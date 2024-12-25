@@ -26,7 +26,7 @@ const Detail = () => {
             <div className="user">
                 <img src={user?.avatar || "./avatar.png"} alt="" />
                 <h2>{user?.username}</h2>
-                <p>Hey Aryan This Side.</p>
+                
             </div>
             <div className="button">
                 <button onClick={handleBlock}>
